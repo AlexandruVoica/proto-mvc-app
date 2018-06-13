@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Abril+Fatface|Raleway");
 html,
 body,
 h1 {
@@ -5,12 +6,12 @@ h1 {
   padding: 0;
 }
 
-body {
-  font-family: 'Playfair Display', serif;
-}
-
 a {
   text-decoration: none;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
 }
 
 header {
@@ -18,7 +19,20 @@ header {
   padding: 15px;
 }
 
+header .title {
+  font-size: 52px;
+  font-family: "Abril Fatface", serif;
+}
+
 header .title a {
   color: #ffffff;
+}
+
+main {
+  padding: 20px;
+}
+
+footer {
+  padding: 10px;
 }
 /*# sourceMappingURL=main.css.map */

@@ -1,15 +1,33 @@
 @import 'normalize';
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Raleway');
 
+$title-font-stack: 'Abril Fatface', serif;
+$body-font-stack: 'Raleway', sans-serif;
 $header-color: #ffc05c;
 $title-color: #ffffff;
+
+body {
+  font-family: $body-font-stack;
+}
 
 header {
   background-color: $header-color;
   padding: 15px;
 
   .title {
+    font-size: 52px;
+    font-family: $title-font-stack;
+
     a {
       color: $title-color;
     }
   }
+}
+
+main {
+  padding: 20px;
+}
+
+footer {
+  padding: 10px;
 }
