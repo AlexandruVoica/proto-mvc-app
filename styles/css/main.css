@@ -1,0 +1,24 @@
+html,
+body,
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Playfair Display', serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  background-color: #ffc05c;
+  padding: 15px;
+}
+
+header .title a {
+  color: #ffffff;
+}
+/*# sourceMappingURL=main.css.map */

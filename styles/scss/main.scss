@@ -1,0 +1,15 @@
+@import 'normalize';
+
+$header-color: #ffc05c;
+$title-color: #ffffff;
+
+header {
+  background-color: $header-color;
+  padding: 15px;
+
+  .title {
+    a {
+      color: $title-color;
+    }
+  }
+}
