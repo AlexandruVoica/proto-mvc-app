@@ -1,5 +1,21 @@
 const app = new App('#root');
 const api = new API();
+const router = new Router(app);
+
+const dogTemplate = dog => `
+<section class="dog-listing">
+  <a href="#/dogs/${dog.id}">
+    <h3 class="name">${dog.name}</h3>
+    <section>
+      <figure>
+        <img src="${dog.imageURL}" alt="${dog.name}"/>
+        <figcaption>${dog.imageCaption}</figcaption>
+      </figure>
+      <p>${dog.description}</p>
+    </section>
+  </a>
+</section>
+`;
 
 app.addComponent({
   name: 'dogs',
@@ -7,15 +23,40 @@ app.addComponent({
     dogs: []
   },
   view (model) {
-    return `There are ${model.dogs.length} dogs.`;
+    const dogsHTML = model.dogs.reduce((html, dog) => html + `<li>${dogTemplate(dog)}</li>`, '');
+    return `
+      <ul class="dogs">
+        ${dogsHTML}
+      </ul>
+    `;
   },
   controller (model) {
     api.getDogs()
       .then(result => {
-        console.log(result);
+        model.dogs = result;
       });
   }
 });
 
-const router = new Router(app);
 router.addRoute('dogs', '^#/dogs$');
+
+app.addComponent({
+  name: 'dog',
+  model: {
+    dog: {}
+  },
+  view (model) {
+    return dogTemplate(model.dog);
+  },
+  controller (model) {
+    const [ , id ] = router.params;
+    console.log(id);
+    api.getDog(id)
+      .then(result => {
+        console.log(result);
+        model.dog = result;
+      });
+  }
+});
+
+router.addRoute('dog', '^#/dogs/([0-9]*)$');

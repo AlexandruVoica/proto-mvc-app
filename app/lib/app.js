@@ -6,14 +6,38 @@ class App {
 
   addComponent (component) {
     this.componentsByName[component.name] = component;
+    component.model = this.proxify(component.model);
   }
 
   showComponent (name) {
     this.currentComponent = this.componentsByName[name];
+    // if (name) {
+    //   this.currentComponent = this.componentsByName[name];
+    // } else {
+    //   [ this.currentComponent ] = Object.values(this.componentsByName);
+    // }
+    if (this.currentComponent) {
+      this.currentComponent.controller(this.currentComponent.model);
+    }
     this.updateView();
   }
 
   updateView () {
-    this.appElement.innerHTML = this.currentComponent.view(this.currentComponent.model);
+    if (this.currentComponent) {
+      this.appElement.innerHTML = this.currentComponent.view(this.currentComponent.model);
+    } else {
+      this.appElement.innerHTML = '<h3>Not Found</h3>';
+    }
+  }
+
+  proxify (model) {
+    const self = this;
+    return new Proxy(model, {
+      set (target, property, value) {
+        target[property] = value;
+        self.updateView();
+        return true;
+      }
+    });
   }
 }
