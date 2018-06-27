@@ -31,10 +31,11 @@ app.addComponent({
     `;
   },
   controller (model) {
-    api.getDogs()
-      .then(result => {
-        model.dogs = result;
-      });
+    model.dogs = api.getDogs();
+    // api.getDogs()
+    //   .then(result => {
+    //     model.dogs = result;
+    //   });
   }
 });
 
@@ -50,12 +51,13 @@ app.addComponent({
   },
   controller (model) {
     const [ , id ] = router.params;
-    console.log(id);
-    api.getDog(id)
-      .then(result => {
-        console.log(result);
-        model.dog = result;
-      });
+    // console.log(id);
+    model.dog = api.getDog(id);
+    // api.getDog(id)
+    //   .then(result => {
+    //     console.log(result);
+    //     model.dog = result;
+    //   });
   }
 });
 

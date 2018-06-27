@@ -7,15 +7,21 @@ class API {
         'X-API-Key': 'f7dabe10'
       }
     };
+    this.dogs = [];
+    fetch(this.API_URL, this.init)
+      .then(result => result.json())
+      .then(result => {
+        this.dogs = result;
+      });
   }
 
   getDogs () {
-    return fetch(this.API_URL, this.init)
-      .then(result => result.json());
+    return this.dogs.slice();
     }
 
     getDog (id) {
-      return fetch(`${this.API_URL}/:${id}`, this.init)
-        .then(result => result.json());
+      const dogFound = this.dogs.filter(dog => dog.id === id);
+      console.log(dogFound);
+      return dogFound;
   }
 }
