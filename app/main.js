@@ -52,7 +52,7 @@ app.addComponent({
   controller (model) {
     const [ , id ] = router.params;
     // console.log(id);
-    model.dog = api.getDog(id);
+    model.dog = api.getDog(id)[0];
     // api.getDog(id)
     //   .then(result => {
     //     console.log(result);

@@ -20,8 +20,6 @@ class API {
     }
 
     getDog (id) {
-      const dogFound = this.dogs.filter(dog => dog.id === id);
-      console.log(dogFound);
-      return dogFound;
+      return this.dogs.filter(dog => dog.id === id);
   }
 }
